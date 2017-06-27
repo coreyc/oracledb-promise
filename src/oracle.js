@@ -10,16 +10,24 @@ const connectionAttrs = {
 const releaseConnections = (resultSet, connection) => {
     process.nextTick(() => {
         if (resultSet) {
-            resultSet.close(err => {
-                if (err) throw err
-                connection.release(err => {
-                    if (err) throw err
+            resultSet
+                .close
+                .then(() => {
+                    connection
+                        .release
+                        .catch(err => {
+                            throw err
+                        })
                 })
-            })
+                .catch(err => {
+                    throw err
+                })
         } else {
-            connection.release(err => {
-                if (err) throw err
-            })
+            connection
+                .release
+                .catch(err => {
+                    throw err
+                })
         }
     })
 }
@@ -28,18 +36,18 @@ const processResultSet = (results, resolve, reject, connection) => {
     const resultSet = results.outBinds.UserDetailsCursor
     if (!resultSet) throw new Error()
     resultSet
-        .getRows(maxRows, (err, rows) => {
-            if (err) {
-                reject(err)
-                releaseConnections(resultSet, connection)
-                return
-            }
+        .getRows(maxRows)
+        .then(rows => {
             if (!rows || rows.length === 0) {
                 resolve(rows)
                 releaseConnections(resultSet, connection)
                 return
             }
             resolve(rows)
+            releaseConnections(resultSet, connection)
+        })
+        .catch(err => {
+            reject(err)
             releaseConnections(resultSet, connection)
         })
 }
