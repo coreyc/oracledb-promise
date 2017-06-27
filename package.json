@@ -1,0 +1,25 @@
+{
+  "name": "oracledb-promise",
+  "version": "1.0.0",
+  "description": "promise-based function wrapper for executing oracle sql",
+  "main": "src/oracle.js",
+  "scripts": {
+    "test": "mocha --recursive ./test/**/*.spec.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/coreyc/oracledb-promise.git"
+  },
+  "keywords": [
+    "node-oracledb"
+  ],
+  "author": "Corey Cleary",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/coreyc/oracledb-promise/issues"
+  },
+  "homepage": "https://github.com/coreyc/oracledb-promise#readme",
+  "dependencies": {
+    "oracledb": "latest"  
+  }
+}
