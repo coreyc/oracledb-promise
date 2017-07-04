@@ -11,7 +11,7 @@
     "url": "git+https://github.com/coreyc/oracledb-promise.git"
   },
   "keywords": [
-    "node-oracledb"
+    "oracledb"
   ],
   "author": "Corey Cleary",
   "license": "ISC",
@@ -20,6 +20,11 @@
   },
   "homepage": "https://github.com/coreyc/oracledb-promise#readme",
   "dependencies": {
-    "oracledb": "latest"  
+    "oracledb": "latest"
+  },
+  "devDependencies": {
+    "chai": "^4.0.2",
+    "mocha": "^3.4.2",
+    "sinon": "^2.3.6"
   }
 }
