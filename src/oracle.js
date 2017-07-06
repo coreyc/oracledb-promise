@@ -11,10 +11,10 @@ const releaseConnections = (resultSet, connection) => {
   process.nextTick(() => {
     if (resultSet) {
       resultSet
-        .close
+        .close()
         .then(() => {
           connection
-            .release
+            .release()
             .catch(err => {
               throw err
             })
@@ -24,7 +24,7 @@ const releaseConnections = (resultSet, connection) => {
         })
     } else {
       connection
-        .release
+        .release()
         .catch(err => {
           throw err
         })
