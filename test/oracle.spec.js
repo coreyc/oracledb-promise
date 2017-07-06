@@ -6,22 +6,20 @@ const { executeSql } = require('../src/oracle')
 describe('OracleDB Promise-based Utility - test suite', () => {
     describe('executeSql()', () => {
         it('should resolve with rows if query returns result', () => {
-            const connectionToRelease = {
-              release: sinon.stub(oracledb, 'release')
-            }
             const results = {
               outBinds: {
                 UserDetailsCursor: {
                   getRows: sinon.stub(oracledb, 'getRows').resolves({rows: []}),
-                  close: sinon.stub(oracledb, 'close').resolves(connectionToRelease)
+                  close: sinon.stub(oracledb, 'close').resolves()
                 }
               }
             }
             const connectionToExecute = {
-              execute: sinon.stub(oracledb, 'execute').resolves(results)
+              execute: sinon.stub(oracledb, 'execute').resolves(results),
+              release: sinon.stub(oracledb, 'release').resolves()
             }
             sinon.stub(oracledb, 'getConnection').resolves(connectionToExecute)
-            expect(executeSql().then(results => results)).to.deep.equal({rows: []})
+            expect(executeSql().then(result => result)).to.deep.equal({rows: []})
         })
 
         it('should reject with error if query does not return result', () => {
