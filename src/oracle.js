@@ -38,7 +38,6 @@ const processResultSet = (results, resolve, reject, connection) => {
   resultSet
     .getRows(maxRows)
     .then(rows => {
-      console.log(rows)
       if (!rows || rows.length === 0) {
         resolve(rows)
         releaseConnections(resultSet, connection)
