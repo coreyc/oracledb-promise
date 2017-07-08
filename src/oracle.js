@@ -1,6 +1,6 @@
 const oracledb = require('oracledb')
 
-const maxRows = 10000
+const maxRows = 10000 // change if rows returned from db will be greater than this number
 
 const connectionAttrs = {
   user: process.env.ORACLE_USER_ID,
@@ -60,6 +60,8 @@ const executeSql = (sql, params) => {
         return connection
           .execute(sql, params, { autoCommit: true, outFormat: oracledb.OBJECT })
           .then(results => {
+            // resolve(results)
+            // connection.release()
             processResultSet(results, resolve, reject, connection)
           })
           .catch(err => {
