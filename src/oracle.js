@@ -60,8 +60,6 @@ const executeSql = (sql, params) => {
         return connection
           .execute(sql, params, { autoCommit: true, outFormat: oracledb.OBJECT })
           .then(results => {
-            // resolve(results)
-            // connection.release()
             processResultSet(results, resolve, reject, connection)
           })
           .catch(err => {
