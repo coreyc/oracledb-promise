@@ -1,4 +1,6 @@
 # oracledb-promise
-Small wrapper around oracledb Node.js library to make querying Oracle databases easier.  Promise-based, cursor-based.
+Small wrapper to make querying Oracle databases from Node easier.  Promise-based, cursor-based.
+
+Closes result sets and connections automatically.
 
 Install oracledb npm module by following steps here: https://github.com/oracle/node-oracledb/blob/master/INSTALL.md
